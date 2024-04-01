@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "yetisApp",
+    "slug": "yetisApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
