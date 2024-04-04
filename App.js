@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import MainStack from "./src/routes/MainStack";
+import { AuthContextProvider } from "./src/contexts/AuthContext";
+import io from "socket.io-client";
 
 export default function App() {
+  useEffect(() => {
+    const socket = io("http://192.168.1.3:5000");
+    socket.on("connect", () => {
+      console.log("connected");
+    });
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <AuthContextProvider>
+        <MainStack />
+      </AuthContextProvider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
